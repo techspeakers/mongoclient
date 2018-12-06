@@ -1,0 +1,25 @@
+{
+  "name": "@techspeakers/mongoclient",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/techspeakers/mongoclient.git"
+  },
+  "author": "Flaki <git@flaki.hu>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/techspeakers/mongoclient/issues"
+  },
+  "homepage": "https://github.com/techspeakers/mongoclient#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "mongodb": "^3.1.10"
+  }
+}
