@@ -1,22 +1,25 @@
 const MongoClient = require('mongodb').MongoClient
 
-const MONGODB_USER = process.env['MONGODB_USER']
-const MONGODB_PASSWORD = process.env['MONGODB_PASSWORD']
-const MONGODB_HOST = process.env['MONGODB_HOST']
+let MONGODB_USER = process.env['MONGODB_USER']
+let MONGODB_PASSWORD = process.env['MONGODB_PASSWORD']
+let MONGODB_HOST = process.env['MONGODB_HOST']
 
 let clientOptions = {
   keepAlive: true,
   connectTimeoutMS: 5000,
-  connectTimeoutMS: 15000,
 
-  reconnectTries: Number.MAX_VALUE,
+  reconnectTries: 3,
   reconnectInterval: 1000,
 
   useNewUrlParser: true,
 }
 
+function connectionUrl() {
+  return `mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_HOST}/admin`
+}
+
 async function connect() {
-  const connectUrl = `mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_HOST}/admin`
+  const connectUrl = connectionUrl
   console.log('Connecting... ')
 
   try {
@@ -35,7 +38,13 @@ async function connect() {
   }
 }
 
+function configure(cfg) {
+  if ('MONGODB_USER' in cfg) MONGODB_USER = cfg['MONGODB_USER']
+  if ('MONGODB_PASSWORD' in cfg) MONGODB_PASSWORD = cfg['MONGODB_PASSWORD']
+  if ('MONGODB_HOST' in cfg) MONGODB_HOST = cfg['MONGODB_HOST']
+}
+
 
 module.exports = {
-  connect,
+  connect, connectionUrl, configure,
 }
