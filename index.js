@@ -19,7 +19,7 @@ function connectionUrl() {
 }
 
 async function connect() {
-  const connectUrl = connectionUrl
+  const connectUrl = connectionUrl()
   console.log('Connecting... ')
 
   try {
